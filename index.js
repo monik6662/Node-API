@@ -5,9 +5,9 @@ const products = require("./db/products");
 const error = require("./db/user");
 const jwt = require("jsonwebtoken");
 const jwtToken = "e-com";
-
 const cors = require("cors");
-
+const port=5500
+const hostname='0.0.0.0';
 const app = express();
 app.use(express.json());
 app.use(cors());
@@ -119,15 +119,7 @@ function verifyToken(req, res, next) {
   }
 }
 
-app.get('/data',function(req,res){
-  return res.send('<!DOCTYPE html>'+
- ' <html xmlns="http://www.w3.org/1999/xhtml">'+
-     '<head><meta charset="utf-8" /> <title></title></head>'+
-    ' <body><form action="/submit" method="post"> First Name: <input name="firstName" type="text" /> '+
-  '  <br />  Last Name: <input name="lastName" type="text" /> '+
-  '<br /> <input type="submit" /> </form></body>  </html>')
 
-}
-
-)
-app.listen(5500);
+app.listen(port, hostname,()=>{
+  console.log(`Server is runnig at http://${hostname}:${port}/`)
+});
